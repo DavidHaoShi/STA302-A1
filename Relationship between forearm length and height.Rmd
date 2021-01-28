@@ -1,0 +1,99 @@
+---
+title: ' Relationship between forearm length and height (.)'
+author: "HS2440 (.)"
+date: "September 26, 2020 (.)"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+## I. Introduction 
+
+Parts marked with (.) need updating. 
+Part 1 (.)
+
+This assignment is about using 10 randomly selected data 
+points from the given sample a20a1data.csv to determine 
+whether there is a relationship between forearm length 
+and height.
+
+The sample data was collected by using rulers to measure 
+out the forearm length and height of the participants in
+centimeters.
+
+I choose forearm length to be the response variable as it
+tends to vary with height.
+I choose height to be the explanatory variable since it 
+explains changes and affects our response variable forearm 
+length.
+
+## II. Exploratory Data Analysis
+The integers below are the IDs of the 10 randomly chosen 
+observations by using the sample( ) function, these 10 
+observations are used as the sample data in this assignment.
+```{r,echo=FALSE}
+set.seed(2440)
+sample(346,size=10)
+random_sample_hs<- data.frame(height = c(189, 174, 171, 166, 180, 175, 160, 167, 175, 175), forearm = c(31.5, 22, 23, 17, 25, 27, 22, 22, 22, 29))
+boxplot(random_sample_hs$height, main="Boxplot of heights in cm from random_sample_hs #2440")
+boxplot(random_sample_hs$forearm, main="Boxplot of forearm lengths in cm from random_sample_hs #2440")
+plot(random_sample_hs$height, random_sample_hs$forearm, main="Scatterplot of random_sample_hs #2440", xlab="heights of participants (cm)", ylab="forearm length of participants (cm)" )
+
+```
+
+Part 2 (.)
+The random_sample_hs data is the set containing 10 randomly
+chosen data points from the "a20a1data" dataset.
+
+The distribution of the response variable is right-skewed 
+rather than being normal.
+
+The explanatory variable height has a center of 174.5,
+a range of 29 cm, a variance of 64.0 and an outlier at 
+189 cm.
+The response variable forearm length has a center of 22.5,
+a range of 14.5, a variance of 17.5 and no outliers.
+
+## III. Methods and Model
+
+Part 3 (.)
+```{r,echo=FALSE}
+lmod=lm(random_sample_hs$forearm~random_sample_hs$height)
+summary(lmod)
+plot(random_sample_hs$height, random_sample_hs$forearm, main="Scatterplot with linear regression model #2440", xlab="heights of participants (cm)", ylab="forearm length of participants (cm)" )
+abline(lmod)
+```
+
+This linear regression model is produced by using forearm
+as y and heights as x. We acquired that this model has an
+intercept (B0) of -43.9 and a slope (B1) of 0.39. Hence 
+the regression parameters are not zero.
+
+The estimates of the regression parameters show that
+there is a positive correlation between heights 
+and forearm lengths.The mean of forearm length increases by
+0.39 cm whenever there is a 1 cm increase in height.
+
+Additionally, the p-value of our independent variable is
+0.0123, which is less than the benchmark significance level 
+of 0.05. Thus the sample data provides enough evidence to 
+reject the null hypothesis that height has no correlation 
+with forearm length.
+In other words, the sample data favors the hypothesis that
+there is a non-zero correlation between height and forearm
+length.
+
+## IV. Discussions and Limitations
+
+Part 4 (.)
+
+A lurking variable can be whether a person regularly does 
+exercises involving the usage of forearm.
+One limitation of our fit is the relatively small sample 
+size. With a bigger sample size, the data can represent 
+the relationship between forearm length and height better.
+In addition, we also assumed their relationship is linear.
+
+Example of another pair of variables that we can use SLR 
+on is "Amount of alcohol consumed and blood alcohol content",
+where blood alcohol content is the response variable.
